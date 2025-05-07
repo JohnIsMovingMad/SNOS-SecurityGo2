@@ -1,0 +1,2 @@
+Surveillance and Monitoring in Real Time
+SNOS is a security system made to offer important assets real-time monitoring and surveillance. Every time a breach happens, it notifies you and the local authorities right away by sending out SMS and email warnings. SNOS guarantees that emergency responders, security firms, or the closest police post/patrol squad are swiftly notified to take action, regardless of where your possessions are located—in the UK or abroad.
