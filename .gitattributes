@@ -1,63 +1,160 @@
 ###############################################################################
-# Set default behavior to automatically normalize line endings.
+# john-everything
+# Author: John J.
+# Purpose: .gitattributes config tailored for full-stack,
+# cross-platform enterprise projects. Covers coding files, binaries, merge
+# behaviors, documentation, and integrates alert points via Git hooks.
+###############################################################################
+
+###############################################################################
+# Normalize line endings across platforms
+# Ensures LF for Unix/macOS and CRLF for Windows are auto-handled.
 ###############################################################################
 * text=auto
 
 ###############################################################################
-# Set default behavior for command prompt diff.
-#
-# This is need for earlier builds of msysgit that does not have it on by
-# default for csharp files.
-# Note: This is only used by command line
+# Core Source Code Files - Safe diff/merge strategies
 ###############################################################################
-#*.cs     diff=csharp
+*.cs         diff=csharp
+*.java       diff=java
+*.js         diff=javascript
+*.ts         diff=typescript
+*.py         diff=python
+*.rb         diff=ruby
+*.go         diff=golang
+*.cpp        diff=cpp
+*.c          diff=c
+*.h          diff=c
+*.swift      diff=swift
+*.kt         diff=kotlin
+*.rs         diff=rust
 
 ###############################################################################
-# Set the merge driver for project and solution files
-#
-# Merging from the command prompt will add diff markers to the files if there
-# are conflicts (Merging from VS is not affected by the settings below, in VS
-# the diff markers are never inserted). Diff markers may cause the following 
-# file extensions to fail to load in VS. An alternative would be to treat
-# these files as binary and thus will always conflict and require user
-# intervention with every merge. To do so, just uncomment the entries below
+# Configuration Files
 ###############################################################################
-#*.sln       merge=binary
-#*.csproj    merge=binary
-#*.vbproj    merge=binary
-#*.vcxproj   merge=binary
-#*.vcproj    merge=binary
-#*.dbproj    merge=binary
-#*.fsproj    merge=binary
-#*.lsproj    merge=binary
-#*.wixproj   merge=binary
-#*.modelproj merge=binary
-#*.sqlproj   merge=binary
-#*.wwaproj   merge=binary
+*.json       text
+*.yaml       text
+*.yml        text
+*.xml        text
+*.env        text
+*.toml       text
+*.ini        text
+*.config     text
 
 ###############################################################################
-# behavior for image files
-#
-# image files are treated as binary by default.
+# Git-friendly Office & Document Formats (diff-as-text for command line tools)
 ###############################################################################
-#*.jpg   binary
-#*.png   binary
-#*.gif   binary
+*.doc        diff=astextplain
+*.DOC        diff=astextplain
+*.docx       diff=astextplain
+*.DOCX       diff=astextplain
+*.pdf        diff=astextplain
+*.PDF        diff=astextplain
+*.rtf        diff=astextplain
+*.RTF        diff=astextplain
+*.md         text
+*.txt        text
 
 ###############################################################################
-# diff behavior for common document formats
-# 
-# Convert binary document formats to text before diffing them. This feature
-# is only available from the command line. Turn it on by uncommenting the 
-# entries below.
+# Project & Solution Files (merge conflicts can break IDEs like Visual Studio)
+# Recommended: Always manually resolve merge conflicts in these.
 ###############################################################################
-#*.doc   diff=astextplain
-#*.DOC   diff=astextplain
-#*.docx  diff=astextplain
-#*.DOCX  diff=astextplain
-#*.dot   diff=astextplain
-#*.DOT   diff=astextplain
-#*.pdf   diff=astextplain
-#*.PDF   diff=astextplain
-#*.rtf   diff=astextplain
-#*.RTF   diff=astextplain
+*.sln        merge=binary
+*.csproj     merge=binary
+*.vbproj     merge=binary
+*.vcxproj    merge=binary
+*.vcproj     merge=binary
+*.dbproj     merge=binary
+*.fsproj     merge=binary
+*.wixproj    merge=binary
+*.modelproj  merge=binary
+*.sqlproj    merge=binary
+*.wwaproj    merge=binary
+
+###############################################################################
+# OS and Editor Artifacts - Ignore binary diffs and treat as binary
+###############################################################################
+*.DS_Store   binary
+Thumbs.db    binary
+*.swp        binary
+*.bak        binary
+
+###############################################################################
+# Media & Binary Assets (treated as binary to avoid corruption during diffs)
+###############################################################################
+*.jpg        binary
+*.jpeg       binary
+*.png        binary
+*.gif        binary
+*.ico        binary
+*.svg        text
+*.webp       binary
+*.mp3        binary
+*.wav        binary
+*.mp4        binary
+*.mov        binary
+*.ttf        binary
+*.otf        binary
+*.woff       binary
+*.woff2      binary
+*.zip        binary
+*.tar        binary
+*.gz         binary
+*.rar        binary
+*.7z         binary
+
+###############################################################################
+# Data & Logs - Stored raw or ignored
+###############################################################################
+*.log        text
+*.csv        text
+*.tsv        text
+*.parquet    binary
+*.avro       binary
+
+###############################################################################
+# Unix Shell & Scripts
+###############################################################################
+*.sh         text eol=lf
+*.bash       text eol=lf
+*.zsh        text eol=lf
+*.bat        text eol=crlf
+*.ps1        text
+
+###############################################################################
+# Alert System Integration - Notify on sensitive merge triggers
+# Used with Git hooks like pre-merge, post-merge for alert pipelines
+###############################################################################
+# ALERT: Binary conflict triggers (manual resolution required)
+# For projects with Slack/PagerDuty integrations, link this to a `post-merge` hook
+# that parses these file types and notifies the DevOps/SRE team.
+
+*.sln        merge=binary # >> Trigger alert if merge conflict
+*.csproj     merge=binary # >> Trigger alert if merge conflict
+
+###############################################################################
+# Platform-specific Normalization
+###############################################################################
+*.ejs        text
+*.vue        text
+*.scss       text
+*.css        text
+*.html       text
+*.xhtml      text
+*.jsx        text
+*.tsx        text
+
+###############################################################################
+# Database & Infrastructure-as-Code Files
+###############################################################################
+*.sql        text
+*.yml        text
+*.yaml       text
+*.tf         text
+*.tfvars     text
+
+###############################################################################
+# Final Catch-All
+###############################################################################
+# Treat everything else as text unless otherwise defined
+*            text=auto
