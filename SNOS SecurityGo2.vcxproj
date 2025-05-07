@@ -1,5 +1,6 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!-- Item group for different project configurations -->
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|ARM">
       <Configuration>Debug</Configuration>
@@ -34,9 +35,10 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+
+  <!-- Property group for global variables -->
   <PropertyGroup Label="Globals">
     <ProjectGuid>{48550cf9-a8ac-40e9-b0a0-9592a99fb3f6}</ProjectGuid>
-    <Keyword>Linux</Keyword>
     <RootNamespace>SNOS_SecurityGo2</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
     <ApplicationType>Linux</ApplicationType>
@@ -44,7 +46,11 @@
     <TargetLinuxPlatform>Generic</TargetLinuxPlatform>
     <LinuxProjectType>{D51BCBC9-82E9-4017-911E-C93873C4EA2B}</LinuxProjectType>
   </PropertyGroup>
+
+  <!-- Importing default props and required configurations -->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+
+  <!-- Configuration-based property group -->
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
   </PropertyGroup>
@@ -69,18 +75,20 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
     <UseDebugLibraries>true</UseDebugLibraries>
   </PropertyGroup>
+
+  <!-- Importing necessary props and configuration files -->
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="Shared" />
-  <ImportGroup Label="PropertySheets" />
-  <PropertyGroup Label="UserMacros" />
+  <ImportProjectLabel="Shared" />
+  <ImportProjectLabel="PropertySheets" />
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="motionSensor.cpp" />
     <ClCompile Include="pressureSensor.cpp" />
     <ClCompile Include="smokeSensor.cpp" />
     <ClCompile Include="temperatureSensor.cpp" />
+    <ClCompile Include="alertSystem.cpp" /> <!-- Added alert system integration -->
   </ItemGroup>
+
   <ItemDefinitionGroup />
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
